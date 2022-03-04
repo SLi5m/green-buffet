@@ -23,8 +23,12 @@ class Navbar extends Component {
                                     {item.title}
                                 </a>
                             </li>
-                        )   
+                        )
                     })}
+                    <div className="navbar-logo"><a className="cName" href="#"></a>
+                        Cart
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
                 </ul>
             </nav>
         )
