@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Routes, Route, Link, Outlet } from "react-router-dom"
 import Navbar from './components/Navbar/Navbar';
 import { MenuList } from './components/products/MenuList';
-// import MenuList from './components/products/MenuList'
+import Cart from './components/Cart/Cart.js';
 import './App.css';
 import { menuItems } from "./components/products/data"
 
@@ -37,13 +38,13 @@ function App() {
 
   return (
     <div>
-      <div className="App">
-        <Navbar />
-      </div>
+      <Navbar />
       
-      <div className="App">
-        <MenuList items={items} addToCart={addToCart} />
-      </div>
+      <Routes>
+          <Route path="/" element={<MenuList items={items} addToCart={addToCart} />} />
+
+          <Route path="/Cart" element={<Cart items={items} addToCart={addToCart} />} />
+      </Routes>
     </div>
   ); 
 }
