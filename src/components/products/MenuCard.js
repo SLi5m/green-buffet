@@ -1,10 +1,10 @@
 import React from 'react';
 import './MenuList.css';
 // PushSubscriptionOptions
-export function  MenuCard ({item, addToCart}) {
+export function  MenuCard ({item, click, buttonText}) {
 
-    const handleAddToCart =()=>{
-        addToCart(item)
+    const handleClick =()=>{
+        click(item)
     }
     
     return (
@@ -19,9 +19,11 @@ export function  MenuCard ({item, addToCart}) {
 
                     <p className='item-text'>{  item.desc }</p>
 
+                    {click && (
                     <div>
-                        <button onClick={handleAddToCart}>Add To Cart</button>
+                        <button onClick={handleClick}>{buttonText}</button>
                     </div>
+                    )}
                 </div> 
             </article>
         </div>

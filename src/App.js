@@ -8,34 +8,37 @@ import { menuItems } from "./components/products/data"
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const [items,setItems] = useState(menuItems)
+  const [items] = useState(menuItems)
 
   const addToCart = (menuItem) => {
     const exists = cartItems.find((x) => x.id === menuItem.id);
-    if (exists) {
-      setCartItems(
-        cartItems.map((x)=>
-          x.id === menuItem.id ? { ...exists, qty: exists.qty + 1} : x
-        )
-      )
+    console.log("í am called")
+    if (exists) { 
+      // if exists, update item count
+      setCartItems([...cartItems, menuItem])
+      console.log(cartItems)
+    
     } else {
-      setCartItems([ ...cartItems, { ...menuItem, qty: 1}]);
+      // if not, add item, with it, add a property to keep count of the item
+      setCartItems([ ...cartItems, menuItem]);
+      // console.log("This is  the else statement")
     }
   };
 
   const removeFromCart = (menuItem) => {
-    const exists = cartItems.find((x) => x.id === menuItem.id);
-    if (exists.qty === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== menuItem.id));
+    console.log('i am item')
+    console.log(cartItems.find(x => x.id === menuItem.id), 'item')
+    const item = cartItems.find(x => x.id === menuItem.id);
+    if (item.qty === 1) {
+      setCartItems(cartItems.filter(x => x.id !== menuItem.id));
     } else {
       setCartItems(
         cartItems.map((x) => 
-          x.id === menuItem.id ? { ...exists, qty: exists.qty - 1 } : x
+          x.id === menuItem.id ? { ...item, qty: item.qty - 1 } : x
         )
       )
     }
   }
-
   return (
     <div>
       <Navbar />
@@ -43,7 +46,8 @@ function App() {
       <Routes>
           <Route path="/" element={<MenuList items={items} addToCart={addToCart} />} />
 
-          <Route path="/Cart" element={<Cart items={items} addToCart={addToCart} />} />
+          <Route path="/cart" element={<Cart items={items} removeFromCart={removeFromCart}
+          buttonText={"Remove From Cart"} />} />
       </Routes>
     </div>
   ); 

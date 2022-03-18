@@ -4,11 +4,13 @@ import { MenuCard } from './MenuCard.js';
 
 
 export function  MenuList ( {items, addToCart}) {
-   
+
     return (
     <div>
-        {items.map((item) => (
-            <MenuCard item={item} addToCart={addToCart}/>
+        {items.map((item, itemIndex) => (
+            <div key={itemIndex}>
+                <MenuCard item={item} click={addToCart} buttonText={"Add To Cart"}/>
+            </div>
         )
         )}
     </div>)

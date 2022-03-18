@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { MenuItems } from './MenuItems';
 import './Navbar.css';
+import { Link } from "react-router-dom";
+
 
 class Navbar extends Component {
     state = { clicked: false}
@@ -25,9 +27,11 @@ class Navbar extends Component {
                             </li>
                         )
                     })}
-                    <div className="navbar-logo"><a className="cName" href="#"></a>
-                        Cart
-                        <i class="fas fa-shopping-cart"></i>
+                    <div className="navbar-logo">
+                        <Link to="Cart" className="nav-links">
+                            Cart
+                            <i className="fas fa-shopping-cart"></i>
+                        </Link>
                     </div>
                 </ul>
             </nav>
