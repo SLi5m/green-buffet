@@ -39,15 +39,15 @@ function App() {
       )
     }
   }
+  console.log("items", items)
+  console.log('cart items', cartItems)
   return (
     <div>
       <Navbar />
       
       <Routes>
           <Route path="/" element={<MenuList items={items} addToCart={addToCart} />} />
-
-          <Route path="/cart" element={<Cart items={items} removeFromCart={removeFromCart}
-          buttonText={"Remove From Cart"} />} />
+          <Route path="/cart" element={<Cart items={cartItems} removeFromCart={removeFromCart} />} />
       </Routes>
     </div>
   ); 
